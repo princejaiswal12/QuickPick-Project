@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+
+<div style="max-width:900px;margin:30px auto;background:white;padding:18px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.08)">
+  <h2 style="color:#1b4f72">Your Cart</h2>
+  <% if (!cart.items.length) { %>
+    <p>Your cart is empty. Browse <a href="/customer/dashboard">shops</a>.</p>
+  <% } else { %>
+    <table width="100%" style="border-collapse:collapse">
+      <thead style="text-align:left;color:#4a648c">
+        <tr><th>Product</th><th>Qty</th><th>Price</th><th>Sub</th></tr>
+      </thead>
+      <tbody>
+        <% cart.items.forEach(i => { %>
+          <tr>
+            <td><%= i.name %></td>
+            <td><%= i.qty %></td>
+            <td>₹<%= i.price %></td>
+            <td>₹<%= i.qty * i.price %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <div style="text-align:right;margin-top:12px">
+      <strong>Total: ₹<%= cart.total %></strong>
+      <form action="/customer/cart/checkout" method="POST" style="display:inline">
+        <button style="padding:10px 14px;background:#1b4f72;color:white;border:none;border-radius:8px;margin-left:12px">Checkout</button>
+      </form>
+    </div>
+  <% } %>
+</div>
+
+<%- include('partials/footer') %>

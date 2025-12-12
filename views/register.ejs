@@ -1,0 +1,45 @@
+<%- include('partials/header') %>
+
+<div style="max-width:600px;margin:30px auto;background:white;padding:22px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.12)">
+  <h2 style="color:#1b4f72">Create Account</h2>
+  <% if (error) { %><p style="color:red"><%= error %></p><% } %>
+
+  <form action="/register" method="POST" enctype="multipart/form-data" id="regForm">
+    <select name="role" id="role" style="width:100%;padding:10px;margin:8px 0" onchange="toggleFields()">
+      <option value="customer">Customer</option>
+      <option value="shopkeeper">Shopkeeper</option>
+    </select>
+
+    <input name="name" placeholder="Full Name" required style="width:100%;padding:10px;margin:8px 0">
+    <input name="email" type="email" placeholder="Email" required style="width:100%;padding:10px;margin:8px 0">
+    <input name="password" type="password" placeholder="Password" required style="width:100%;padding:10px;margin:8px 0">
+    <input name="phone" placeholder="Phone Number" style="width:100%;padding:10px;margin:8px 0">
+
+    <div id="customerFields">
+      <input name="address" placeholder="Full Address" style="width:100%;padding:10px;margin:8px 0">
+      <input name="city" placeholder="City" style="width:100%;padding:10px;margin:8px 0">
+    </div>
+
+    <div id="shopkeeperFields" style="display:none;">
+      <input name="shopName" placeholder="Shop Name" style="width:100%;padding:10px;margin:8px 0">
+      <input name="shopAddress" placeholder="Shop Address" style="width:100%;padding:10px;margin:8px 0">
+      <input name="shopCategory" placeholder="Shop Category" style="width:100%;padding:10px;margin:8px 0">
+      <input name="gstNumber" placeholder="GST Number (optional)" style="width:100%;padding:10px;margin:8px 0">
+      <label>Shop Logo (optional)</label>
+      <input name="shopLogo" type="file" accept="image/*" style="width:100%;padding:6px;margin:8px 0">
+    </div>
+
+    <button style="width:100%;padding:12px;background:#1b4f72;color:white;border:none;border-radius:8px">Register</button>
+  </form>
+</div>
+
+<script>
+function toggleFields() {
+    const type = document.getElementById('role').value;
+    document.getElementById('shopkeeperFields').style.display = (type === 'shopkeeper') ? 'block' : 'none';
+    document.getElementById('customerFields').style.display = (type === 'customer') ? 'block' : 'none';
+}
+toggleFields();
+</script>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,10 @@
+<%- include('partials/header') %>
+
+<div style="max-width:700px;margin:40px auto;background:white;padding:20px;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,0.06)">
+  <h2 style="color:#1b4f72">Order Placed</h2>
+  <p>Order ID: <%= order._id %></p>
+  <p>Total: ₹<%= order.total %></p>
+  <a href="/customer/dashboard" style="padding:10px 12px;background:#1b4f72;color:white;border-radius:8px;text-decoration:none">Back to Shops</a>
+</div>
+
+<%- include('partials/footer') %>
